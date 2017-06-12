@@ -1,12 +1,4 @@
-/* eslint no-unused-vars: 0 */
-/* eslint no-console: 0 */
-/* eslint space-infix-ops: 0 */
-/* eslint max-len: 0 */
-import React from 'react';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-
-
-const jobs = [
+[
         {
             "objectID": "0",
             "category": "young-prime",
@@ -850,46 +842,4 @@ const jobs = [
         "price": "9.99",
         "cooking": "Roast"
     }
-];
-
-const options = {
-  paginationShowsTotal: true,
-  sortName: 'objectID',  // default sort column name
-  sortOrder: 'asc'  // default sort order
-};
-
-function priorityFormatter(cell, row) {
-  if (cell === 'A') return '<font color="red">' + cell + '</font>';
-  else if (cell === 'B') return '<font color="orange">' + cell + '</font>';
-  else return cell;
-}
-
-function trClassNameFormat(rowData, rIndex) {
-  return rIndex % 3 === 0 ? 'third-tr' : '';
-}
-
-function priceFormatter(cell, row) {
-  return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;
-}
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <BootstrapTable data={ jobs }
-        trClassName={ trClassNameFormat }
-        options={ options }
-        search
-        hover
-        pagination>
-        <TableHeaderColumn dataField='objectID' dataSort isKey>ID</TableHeaderColumn>
-        <TableHeaderColumn dataField='category' dataSort className='good'>Category</TableHeaderColumn>
-        <TableHeaderColumn dataField='meatCut' dataSort className='good'>MeatCut</TableHeaderColumn>
-        <TableHeaderColumn dataField='price'  dataSort dataFormat={ priceFormatter }>Price</TableHeaderColumn>
-        <TableHeaderColumn dataField='cooking' dataSort>Cooking</TableHeaderColumn>
-      </BootstrapTable>
-    );
-  }
-}
-
-
-
+]

@@ -1,9 +1,9 @@
 import React from 'react';
 import App from './app';
 
-require('./demo.css');
+require('./tableRecordStyle.css');
 
-class Demo extends React.Component {
+class ReactTablePanel extends React.Component {
   render() {
     return (
       <div className='col-md-offset-1 col-md-8'>
@@ -17,4 +17,4 @@ class Demo extends React.Component {
   }
 }
 
-export default Demo;
+export default ReactTablePanel;
