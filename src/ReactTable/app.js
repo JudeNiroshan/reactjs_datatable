@@ -18,18 +18,13 @@ const categoryType = {
   'misc':'Misc'
 };
 
-function priorityFormatter(cell, row) {
-  if (cell === 'A') return '<font color="red">' + cell + '</font>';
-  else if (cell === 'B') return '<font color="orange">' + cell + '</font>';
-  else return cell;
-}
 
 function trClassNameFormat(rowData, rIndex) {
   return rIndex % 3 === 0 ? 'third-tr' : '';
 }
 
 function priceFormatter(cell, row) {
-  return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;
+  return `${cell}`;
 }
 
 export default class App extends React.Component {
@@ -41,12 +36,13 @@ export default class App extends React.Component {
         search
         hover
         pagination>
-        <TableHeaderColumn dataField='objectID' dataSort isKey>ID</TableHeaderColumn>
-        <TableHeaderColumn dataField='category' dataSort filterFormatted 
-          filter={ { type: 'SelectFilter', options: categoryType }} className='good'>Category</TableHeaderColumn>
-        <TableHeaderColumn dataField='meatCut' dataSort className='good'>MeatCut</TableHeaderColumn>
-        <TableHeaderColumn dataField='price'  dataSort dataFormat={ priceFormatter }>Price</TableHeaderColumn>
+        <TableHeaderColumn hidden dataField='objectID' dataSort isKey>ID</TableHeaderColumn>
+        <TableHeaderColumn dataField='meatCut' dataSort className='good'>Cut</TableHeaderColumn>
         <TableHeaderColumn dataField='cooking' dataSort>Cooking</TableHeaderColumn>
+        <TableHeaderColumn dataField='price' dataFormat={ priceFormatter }></TableHeaderColumn>
+        <TableHeaderColumn dataField='category' filterFormatted 
+          filter={ { type: 'SelectFilter', options: categoryType }} className='good'></TableHeaderColumn>
+        
       </BootstrapTable>
     );
   }
