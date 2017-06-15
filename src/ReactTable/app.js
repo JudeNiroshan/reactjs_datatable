@@ -18,6 +18,14 @@ const categoryType = {
   'misc':'Misc'
 };
 
+const selectRowProp = {
+  mode: 'checkbox',
+  clickToSelect: true,
+  selected: [], // default select on table
+  hideSelectColumn: true,
+  bgColor: 'rgb(238, 193, 213)',
+  onSelect: onRowSelect
+};
 
 function trClassNameFormat(rowData, rIndex) {
   return rIndex % 3 === 0 ? 'third-tr' : '';
@@ -27,11 +35,24 @@ function priceFormatter(cell, row) {
   return `${cell}`;
 }
 
+function onRowSelect(row, isSelected) {
+  console.log(row);
+  console.log(`selected: ${isSelected}`);
+  App.handleBtnClick(row.category);
+}
+
+
 export default class App extends React.Component {
+
+  handleBtnClick = (e) => {
+    this.refs.nameCol.applyFilter(e);
+  }
+
   render() {
     return (
       <BootstrapTable data={ jsonData }
         trClassName={ trClassNameFormat }
+        selectRow={ selectRowProp }
         options={ options }
         search
         hover
@@ -40,7 +61,7 @@ export default class App extends React.Component {
         <TableHeaderColumn dataField='meatCut' dataSort className='good'>Cut</TableHeaderColumn>
         <TableHeaderColumn dataField='cooking' dataSort>Cooking</TableHeaderColumn>
         <TableHeaderColumn dataField='price' dataFormat={ priceFormatter }></TableHeaderColumn>
-        <TableHeaderColumn dataField='category' filterFormatted 
+        <TableHeaderColumn ref='nameCol' dataField='category' filterFormatted 
           filter={ { type: 'SelectFilter', options: categoryType }} className='good'></TableHeaderColumn>
         
       </BootstrapTable>
