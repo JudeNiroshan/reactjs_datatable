@@ -38,14 +38,15 @@ function priceFormatter(cell, row) {
 function onRowSelect(row, isSelected) {
   console.log(row);
   console.log(`selected: ${isSelected}`);
-  App.handleBtnClick(row.category);
+  App.handleBtnClick();
 }
 
 
 export default class App extends React.Component {
 
-  handleBtnClick = (e) => {
-    this.refs.nameCol.applyFilter(e);
+  /* There're two way that you can filter data */
+  handleBtnClick = () => {
+    this.refs.nameCol.applyFilter('young-prime');
   }
 
   render() {
